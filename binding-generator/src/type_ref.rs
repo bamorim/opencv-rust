@@ -253,6 +253,9 @@ impl<'tu> TypeRef<'tu> {
 			TypeKind::Int128 => Kind::Primitive("i128", "__int128_t"),
 			TypeKind::UInt128 => Kind::Primitive("u128", "__uint128_t"),
 			TypeKind::Float => Kind::Primitive("f32", "float"),
+			// Teorically __fp16 is not supposed to be used as argument or return, so it should not be a problem for bindings
+			// Maybe I need to install crate half which provides f16 implementation. Have no idea how this can break things
+			TypeKind::Half => Kind::Ignored,
 			TypeKind::Double => Kind::Primitive("f64", "double"),
 
 			TypeKind::Pointer => {
